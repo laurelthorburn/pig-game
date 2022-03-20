@@ -13,8 +13,8 @@ const newBtn = document.querySelector('.btn--new');
 const rollBtn = document.querySelector('.btn--roll');
 const holdBtn = document.querySelector('.btn--hold');
 
+const scores = [0, 0]
 let currentScore = 0;
-
 //checking who is the active player
 let activePlayer = 0;
 
@@ -36,10 +36,8 @@ rollBtn.addEventListener('click', function(){
     //3. check if rolled 1 -- yes = next player
     if(diceRoll !== 1){
         currentScore += diceRoll;
-        current0El.textContent = currentScore; //UPDATE LATER to be active player
+        document.getElementById(`current--${activePlayer}`).textContent = currentScore;
     } else {
-        console.log("fudge");
-        currentScore = 0;
-        current0El.textContent = 0;
+        activePlayer = activePlayer === 0 ? 1 : 0;
     }
 })
