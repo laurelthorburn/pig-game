@@ -9,6 +9,8 @@ const newBtn = document.querySelector('.btn--new');
 const rollBtn = document.querySelector('.btn--roll');
 const holdBtn = document.querySelector('.btn--hold');
 
+let currentScore = 0;
+
 //initial scores
 score0El.textContent = 0;
 score1El.textContent = 0;
@@ -27,7 +29,7 @@ rollBtn.addEventListener('click', function(){
     //3. check if rolled 1 -- yes = next player
     if(diceRoll !== 1){
         console.log("yay");
-        score0El = score0El + diceRoll;
+        currentScore += diceRoll;
     } else {
         console.log("fudge");
     }
