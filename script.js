@@ -3,6 +3,10 @@
 // Selecting elements
 const score0El = document.getElementById('score--0');
 const score1El = document.getElementById('score--1');
+
+const current0El = document.getElementById('current--0');
+const current1El = document.getElementById('current--1');
+
 const diceEl = document.querySelector('.dice');
 
 const newBtn = document.querySelector('.btn--new');
@@ -10,6 +14,9 @@ const rollBtn = document.querySelector('.btn--roll');
 const holdBtn = document.querySelector('.btn--hold');
 
 let currentScore = 0;
+
+//checking who is the active player
+let activePlayer = 0;
 
 //initial scores
 score0El.textContent = 0;
@@ -28,9 +35,11 @@ rollBtn.addEventListener('click', function(){
     diceEl.src = `dice-${diceRoll}.png`;
     //3. check if rolled 1 -- yes = next player
     if(diceRoll !== 1){
-        console.log("yay");
         currentScore += diceRoll;
+        current0El.textContent = currentScore; //UPDATE LATER to be active player
     } else {
         console.log("fudge");
+        currentScore = 0;
+        current0El.textContent = 0;
     }
 })
