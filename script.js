@@ -67,6 +67,7 @@ holdBtn.addEventListener('click', function () {
     document.getElementById(`score--${activePlayer}`).textContent = scores[activePlayer];
     switchPlayer();
   } else {
-    console.log('We have a winner!');
+    document.querySelector(`.player--${activePlayer}`).classList.add('player--winner');
+    document.querySelector(`.player--${activePlayer}`).classList.remove('player--active');
   }
 });
