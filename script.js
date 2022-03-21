@@ -19,6 +19,7 @@ const scores = [0, 0];
 let currentScore = 0;
 //checking who is the active player
 let activePlayer = 0;
+let playing = true;
 
 //initial scores
 score0El.textContent = 0;
@@ -29,46 +30,56 @@ diceEl.classList.add('hidden');
 
 //switch player
 const switchPlayer = function () {
-    document.getElementById(`current--${activePlayer}`).textContent = 0;
-    currentScore = 0;
-    activePlayer = activePlayer === 0 ? 1 : 0;
-    player0Element.classList.toggle('player--active');
-    player1Element.classList.toggle('player--active');
+  document.getElementById(`current--${activePlayer}`).textContent = 0;
+  currentScore = 0;
+  activePlayer = activePlayer === 0 ? 1 : 0;
+  player0Element.classList.toggle('player--active');
+  player1Element.classList.toggle('player--active');
 };
 
 // ROlling dice functionality
 rollBtn.addEventListener('click', function () {
-  //1. generate a random #/dice roll
-  const diceRoll = Math.floor(Math.random() * 6) + 1;
-  console.log(diceRoll);
-  //2. display dice
-  diceEl.classList.remove('hidden');
-  diceEl.src = `dice-${diceRoll}.png`;
-  //3. check if rolled 1 -- yes = next player
-  if (diceRoll !== 1) {
-    currentScore += diceRoll;
-    document.getElementById(`current--${activePlayer}`).textContent =
-      currentScore;
-  } else {
-    switchPlayer();
+  if (playing) {
+    //1. generate a random #/dice roll
+    const diceRoll = Math.floor(Math.random() * 6) + 1;
+    console.log(diceRoll);
+    //2. display dice
+    diceEl.classList.remove('hidden');
+    diceEl.src = `dice-${diceRoll}.png`;
+    //3. check if rolled 1 -- yes = next player
+    if (diceRoll !== 1) {
+      currentScore += diceRoll;
+      document.getElementById(`current--${activePlayer}`).textContent =
+        currentScore;
+    } else {
+      switchPlayer();
+    }
   }
 });
 
 //hold functionality
 
 holdBtn.addEventListener('click', function () {
-  //player clicks hold
-  //assess who the active player is (0 or 1)
-  // add the total score to the active player
-  //toggle classname
-  //change active player
-  scores[activePlayer] += currentScore;
-  document.getElementById(`score--${activePlayer}`).textContent = scores[activePlayer];
+  if (playing) {
+    //player clicks hold
+    //assess who the active player is (0 or 1)
+    // add the total score to the active player
+    //toggle classname
+    //change active player
+    scores[activePlayer] += currentScore;
+    document.getElementById(`score--${activePlayer}`).textContent =
+      scores[activePlayer];
 
-  if (scores[activePlayer] >= 2) {
-    document.querySelector(`.player--${activePlayer}`).classList.add('player--winner');
-    document.querySelector(`.player--${activePlayer}`).classList.remove('player--active');
-  } else {
-    switchPlayer();
+    if (scores[activePlayer] >= 2) {
+      playing = false;
+      document
+        .querySelector(`.player--${activePlayer}`)
+        .classList.add('player--winner');
+      document
+        .querySelector(`.player--${activePlayer}`)
+        .classList.remove('player--active');
+    } else {
+      switchPlayer();
+    }
   }
 });
