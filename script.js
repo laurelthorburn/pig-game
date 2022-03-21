@@ -62,12 +62,13 @@ holdBtn.addEventListener('click', function () {
   // add the total score to the active player
   //toggle classname
   //change active player
-  if (scores[activePlayer] < 100) {
-    scores[activePlayer] += currentScore;
-    document.getElementById(`score--${activePlayer}`).textContent = scores[activePlayer];
-    switchPlayer();
-  } else {
+  scores[activePlayer] += currentScore;
+  document.getElementById(`score--${activePlayer}`).textContent = scores[activePlayer];
+
+  if (scores[activePlayer] >= 2) {
     document.querySelector(`.player--${activePlayer}`).classList.add('player--winner');
     document.querySelector(`.player--${activePlayer}`).classList.remove('player--active');
+  } else {
+    switchPlayer();
   }
 });
