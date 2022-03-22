@@ -85,20 +85,19 @@ holdBtn.addEventListener('click', function () {
   }
 });
 
-newBtn.addEventListener("click", function(){
-  console.log("hello")
-    playing=true;
-    document.getElementById(`current--0`).textContent =
-    0;
-    document.getElementById(`current--1`).textContent =
-    0;
-    document.getElementById(`score--0`).textContent =
-    0;
-    document.getElementById(`score--1`).textContent =
-    0;
-    scores[0] = 0;
-    scores[1] = 0;
-
-    console.log(scores);
-    console.log(currentScore)
-})
+newBtn.addEventListener('click', function () {
+  console.log('hello');
+  playing = true;
+  current0El.textContent = 0;
+  current1El.textContent = 0;
+  score0El.textContent = 0;
+  score1El.textContent = 0;
+  scores[0] = 0;
+  scores[1] = 0;
+  player0Element.classList.remove('player--winner');
+  player1Element.classList.remove('player--winner');
+  player1Element.classList.remove('player--active');
+  player0Element.classList.add('player--active');
+  console.log(scores);
+  console.log(currentScore);
+});
