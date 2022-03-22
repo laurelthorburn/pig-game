@@ -16,17 +16,36 @@ const rollBtn = document.querySelector('.btn--roll');
 const holdBtn = document.querySelector('.btn--hold');
 
 const scores = [0, 0];
-let currentScore = 0;
-//checking who is the active player
-let activePlayer = 0;
-let playing = true;
+let currentScore;
+let activePlayer;
+let playing;
 
-//initial scores
-score0El.textContent = 0;
-score1El.textContent = 0;
+const init = function () {
 
-//create hidden class on dice
-diceEl.classList.add('hidden');
+  currentScore = 0;
+  //checking who is the active player
+  activePlayer = 0;
+  playing = true;
+
+  //initial scores
+  score0El.textContent = 0;
+  score1El.textContent = 0;
+
+  current0El.textContent = 0;
+  current1El.textContent = 0;
+  score0El.textContent = 0;
+  score1El.textContent = 0;
+
+  player0Element.classList.remove('player--winner');
+  player1Element.classList.remove('player--winner');
+  player1Element.classList.remove('player--active');
+  player0Element.classList.add('player--active');
+
+  //create hidden class on dice
+  diceEl.classList.add('hidden');
+};
+
+init();
 
 //switch player
 const switchPlayer = function () {
@@ -86,18 +105,5 @@ holdBtn.addEventListener('click', function () {
 });
 
 newBtn.addEventListener('click', function () {
-  console.log('hello');
-  playing = true;
-  current0El.textContent = 0;
-  current1El.textContent = 0;
-  score0El.textContent = 0;
-  score1El.textContent = 0;
-  scores[0] = 0;
-  scores[1] = 0;
-  player0Element.classList.remove('player--winner');
-  player1Element.classList.remove('player--winner');
-  player1Element.classList.remove('player--active');
-  player0Element.classList.add('player--active');
-  console.log(scores);
-  console.log(currentScore);
+  init();
 });
