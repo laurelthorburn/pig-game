@@ -86,11 +86,19 @@ holdBtn.addEventListener('click', function () {
 });
 
 newBtn.addEventListener("click", function(){
+  console.log("hello")
     playing=true;
-    document.getElementById(`current--${activePlayer}`).textContent =
+    document.getElementById(`current--0`).textContent =
     0;
-    document.getElementById(`current--${activePlayer}`).textContent =
-    currentScore;
+    document.getElementById(`current--1`).textContent =
+    0;
+    document.getElementById(`score--0`).textContent =
+    0;
+    document.getElementById(`score--1`).textContent =
+    0;
     scores[0] = 0;
     scores[1] = 0;
+
+    console.log(scores);
+    console.log(currentScore)
 })
